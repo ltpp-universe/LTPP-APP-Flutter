@@ -8,3 +8,4 @@
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
 -->
+> build:flutter build apk
