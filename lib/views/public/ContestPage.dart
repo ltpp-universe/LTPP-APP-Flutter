@@ -237,6 +237,7 @@ class _ContestState extends State<ContestPage>
     if (res['code'] == 1) {
       setState(() {
         _is_join = true;
+        ++_contest['allpeople'];
       });
       _lookContestProblem();
     }
