@@ -15,9 +15,9 @@ import 'Global.dart';
 
 class MyWebSocket {
   // ignore: non_constant_identifier_names, prefer_interpolation_to_compose_strings, constant_identifier_names
-  static const String public_ws_url = 'ws://ltpp.vip:47272?';
+  static const String public_ws_url = 'wss://wss.ltpp.vip?';
   // ignore: constant_identifier_names
-  static const String private_ws_url = 'ws://ltpp.vip:47272?';
+  static const String private_ws_url = 'ws://hbnuoj.ltpp.vip:47272?';
   static String ws_url = '';
   static late WebSocket? _webSocket;
   static bool success = false;
