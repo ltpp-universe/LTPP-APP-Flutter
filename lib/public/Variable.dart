@@ -9,4 +9,4 @@ const String type_private_chat_name = 'private_chat';
 const String type_group_chat_name = 'group_chat';
 // socket_url
 // ignore: constant_identifier_names
-const String socket_url = 'ws://ltpp.vip:47272?';
+const String socket_url = 'wss://wss.ltpp.vip?';
