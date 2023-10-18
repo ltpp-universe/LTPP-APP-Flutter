@@ -1,9 +1,9 @@
 /*
  * @Author: 18855190718 1491579574@qq.com
  * @Date: 2023-03-04 19:57:18
- * @LastEditors: 18855190718 1491579574@qq.com
- * @LastEditTime: 2023-06-18 16:32:09
- * @FilePath: \study_bug\lib\public\Http.dart
+ * @LastEditors: wmzn-ltpp 1491579574@qq.com
+ * @LastEditTime: 2023-10-18 15:42:18
+ * @FilePath: \LTPP-APP-Flutter\lib\public\Http.dart
  * @Description: Email:1491579574@qq.com
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
@@ -66,7 +66,7 @@ class Http {
           (route) => false,
         );
       }
-      if (response_json['code'] != 1) {
+      if (response_json['code'] <= 0) {
         // ignore: use_build_context_synchronously
         MyDialog(context, content: response_json['msg'] ?? '请求失败');
       }
