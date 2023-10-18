@@ -1,9 +1,9 @@
 /*
  * @Author: SQS 1491579574@qq.com
  * @Date: 2023-05-19 14:01:51
- * @LastEditors: 18855190718 1491579574@qq.com
- * @LastEditTime: 2023-09-16 22:59:55
- * @FilePath: \study_bug\lib\assembly\MyArticleFabulousAndCollectionButton.dart
+ * @LastEditors: wmzn-ltpp 1491579574@qq.com
+ * @LastEditTime: 2023-10-18 16:26:00
+ * @FilePath: \LTPP-APP-Flutter\lib\assembly\MyArticleFabulousAndCollectionButton.dart
  * @Description: Email:1491579574@qq.com
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
@@ -107,12 +107,12 @@ class _MyArticleFabulousAndCollectionButtonState
   void _toShareArticle() async {
     Map<String, dynamic> res = await Http.sendPost(
       context,
-      '/Url/getFrontUrl',
+      '/Url/getBackUrl',
     );
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
       Global.toHtmlPage(
-          context, name, res['data'] + ':48787/Article/oneArticle?path=' + id);
+          context, name, res['data'] + '/Article/oneArticle?path=' + id);
     }
   }
 
