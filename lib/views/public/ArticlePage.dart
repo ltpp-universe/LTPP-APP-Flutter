@@ -1,9 +1,9 @@
 /*
  * @Author: 18855190718 1491579574@qq.com
  * @Date: 2023-03-04 15:56:59
- * @LastEditors: SQS 1491579574@qq.com
- * @LastEditTime: 2023-05-28 11:15:27
- * @FilePath: \study_bug\lib\views\public\ArticlePage.dart
+ * @LastEditors: wmzn-ltpp 1491579574@qq.com
+ * @LastEditTime: 2023-11-20 14:10:27
+ * @FilePath: \LTPP-APP-Flutter\lib\views\public\ArticlePage.dart
  * @Description: Email:1491579574@qq.com
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
@@ -90,7 +90,7 @@ class _ArticleState extends State<ArticlePage>
               children: <Widget>[
                 Text(
                   _article['name'],
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: const TextStyle(
                       fontSize: Global.app_bar_font_size,
                       fontWeight: FontWeight.bold),

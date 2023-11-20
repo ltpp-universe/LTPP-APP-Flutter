@@ -1,9 +1,9 @@
 /*
  * @Author: 18855190718 1491579574@qq.com
  * @Date: 2023-03-04 15:56:59
- * @LastEditors: SQS 1491579574@qq.com
- * @LastEditTime: 2023-05-25 12:20:19
- * @FilePath: \study_bug\lib\views\public\OjPage.dart
+ * @LastEditors: wmzn-ltpp 1491579574@qq.com
+ * @LastEditTime: 2023-11-20 14:11:33
+ * @FilePath: \LTPP-APP-Flutter\lib\views\public\OjPage.dart
  * @Description: Email:1491579574@qq.com
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
@@ -91,7 +91,7 @@ class _OjState extends State<OjPage> with AutomaticKeepAliveClientMixin {
               children: <Widget>[
                 Text(
                   _oj['problemName'],
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   style: const TextStyle(
                       fontSize: Global.app_bar_font_size,
                       fontWeight: FontWeight.bold),

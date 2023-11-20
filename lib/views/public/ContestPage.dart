@@ -3,9 +3,9 @@
 /*
  * @Author: 18855190718 1491579574@qq.com
  * @Date: 2023-03-04 15:56:59
- * @LastEditors: 18855190718 1491579574@qq.com
- * @LastEditTime: 2023-09-16 23:07:47
- * @FilePath: \study_bug\lib\views\public\ContestPage.dart
+ * @LastEditors: wmzn-ltpp 1491579574@qq.com
+ * @LastEditTime: 2023-11-20 14:12:01
+ * @FilePath: \LTPP-APP-Flutter\lib\views\public\ContestPage.dart
  * @Description: Email:1491579574@qq.com
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
@@ -79,7 +79,7 @@ class _ContestState extends State<ContestPage>
     main_list_view.add(
       Text(
         _contest['name'] ?? '无',
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.left,
         style: const TextStyle(
             fontSize: Global.app_bar_font_size, fontWeight: FontWeight.bold),
       ),
