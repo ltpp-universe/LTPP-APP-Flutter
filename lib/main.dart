@@ -94,9 +94,10 @@ class _MyHomePageState extends State<MyHomePage>
     getMyData();
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
-          items: bottom_navigation_bar_list,
-          activeColor: Color(Global.app_theme),
-          inactiveColor: const Color.fromARGB(255, 29, 136, 193)),
+        items: bottom_navigation_bar_list,
+        activeColor: Color(Global.app_theme),
+        inactiveColor: const Color.fromARGB(255, 101, 124, 201),
+      ),
       tabBuilder: (BuildContext context, int index) {
         return getView(index);
       },
