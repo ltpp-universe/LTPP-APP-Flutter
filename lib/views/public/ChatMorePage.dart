@@ -92,9 +92,8 @@ class _ChatMorePageState extends State<ChatMorePage> {
       return;
     }
     // ignore: non_constant_identifier_names, prefer_is_empty
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Chat/getGroupUserList',
-        body: {'group_id': widget.data['group_data']['id']});
+    Map<String, dynamic> res = await Http.sendPost('/Chat/getGroupUserList',
+        context: context, body: {'group_id': widget.data['group_data']['id']});
     if (res['code'] == 1) {
       setState(() {
         _group_user_list = res['data'];
@@ -108,9 +107,8 @@ class _ChatMorePageState extends State<ChatMorePage> {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/User/lookUserData',
-        body: {'user_id': widget.data['id']});
+    Map<String, dynamic> res = await Http.sendPost('/User/lookUserData',
+        context: context, body: {'user_id': widget.data['id']});
     if (res['code'] == 1) {
       setState(() {
         _user_data = res['data'];

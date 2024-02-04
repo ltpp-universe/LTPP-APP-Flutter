@@ -220,8 +220,8 @@ class _ChatDialogPageState extends State<ChatDialogPage>
       return;
     }
     Map<String, dynamic> res = await Http.sendPost(
-      context,
       '/User/getMyData',
+      context: context,
     );
     if (res['code'] == 1) {
       setState(() {
@@ -242,14 +242,15 @@ class _ChatDialogPageState extends State<ChatDialogPage>
       return;
     }
     lock = true;
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Chat/getHistoryChatData', body: {
-      'type': _data['type'],
-      'msg_id': Global.chat_data.isNotEmpty
-          ? Global.chat_data[_data['id']]![0]['id']
-          : '',
-      'user_id': _data['id']
-    });
+    Map<String, dynamic> res = await Http.sendPost('/Chat/getHistoryChatData',
+        context: context,
+        body: {
+          'type': _data['type'],
+          'msg_id': Global.chat_data.isNotEmpty
+              ? Global.chat_data[_data['id']]![0]['id']
+              : '',
+          'user_id': _data['id']
+        });
     if (res['code'] == 1) {
       setState(() {
         // 头插入不用反转
@@ -266,8 +267,8 @@ class _ChatDialogPageState extends State<ChatDialogPage>
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Chat/getLatestChatData',
+    Map<String, dynamic> res = await Http.sendPost('/Chat/getLatestChatData',
+        context: context,
         body: {'type': _data['type'], 'msg_id': '', 'user_id': _data['id']});
     if (res['code'] == 1) {
       setState(() {

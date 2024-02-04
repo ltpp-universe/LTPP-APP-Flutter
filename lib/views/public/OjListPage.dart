@@ -47,9 +47,8 @@ class _OjListState extends State<OjListPage>
     }
     is_lock = true;
     // ignore: non_constant_identifier_names, prefer_is_empty
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Oj/getProblemList',
-        body: {'page': page, 'limit': limit});
+    Map<String, dynamic> res = await Http.sendPost('/Oj/getProblemList',
+        context: context, body: {'page': page, 'limit': limit});
 
     if (res['code'] == 1) {
       if (res['data'].length == 0) {

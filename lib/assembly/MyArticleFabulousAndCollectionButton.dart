@@ -51,10 +51,12 @@ class _MyArticleFabulousAndCollectionButtonState
   }
 
   void _collection() async {
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Article/collectionOneArticle', body: {
-      'article_id': id,
-    });
+    Map<String, dynamic> res = await Http.sendPost(
+        '/Article/collectionOneArticle',
+        context: context,
+        body: {
+          'article_id': id,
+        });
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
       setState(() {
@@ -68,10 +70,11 @@ class _MyArticleFabulousAndCollectionButtonState
   }
 
   void _delCollection() async {
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Article/deleteLoveArticle', body: {
-      'article_id': id,
-    });
+    Map<String, dynamic> res = await Http.sendPost('/Article/deleteLoveArticle',
+        context: context,
+        body: {
+          'article_id': id,
+        });
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
       setState(() {
@@ -86,10 +89,12 @@ class _MyArticleFabulousAndCollectionButtonState
 
   void _fabulous() async {
     // ignore: use_build_context_synchronously
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Article/fabulousOneArticle', body: {
-      'article_id': id,
-    });
+    Map<String, dynamic> res = await Http.sendPost(
+        '/Article/fabulousOneArticle',
+        context: context,
+        body: {
+          'article_id': id,
+        });
 
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
@@ -106,8 +111,8 @@ class _MyArticleFabulousAndCollectionButtonState
   // ignore: unused_element
   void _toShareArticle() async {
     Map<String, dynamic> res = await Http.sendPost(
-      context,
       '/Url/getBackUrl',
+      context: context,
     );
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously

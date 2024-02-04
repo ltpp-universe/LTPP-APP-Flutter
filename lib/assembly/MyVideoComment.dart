@@ -44,7 +44,7 @@ class _MyVideoCommentState extends State<MyVideoComment> {
     is_lock = true;
     // ignore: use_build_context_synchronously
     Map<String, dynamic> res =
-        await Http.sendPost(context, '/Video/loadUserComment', body: {
+        await Http.sendPost('/Video/loadUserComment', context: context, body: {
       'video_id': widget.id,
       'comment_id':
           comment_list.isEmpty ? 0 : comment_list[comment_list.length - 1]['id']

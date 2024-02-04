@@ -63,8 +63,8 @@ class _MyHomePageState extends State<MyHomePage>
     with AutomaticKeepAliveClientMixin {
   void getMyData() async {
     Map<String, dynamic> res = await Http.sendPost(
-      context,
       '/User/getMyData',
+      context: context,
     );
     if (res['code'] == 1) {
       setState(() {

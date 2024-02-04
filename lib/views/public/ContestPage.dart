@@ -216,9 +216,8 @@ class _ContestState extends State<ContestPage>
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/judgeIsJoin',
-        body: {'contest_id': _contest['id']});
+    Map<String, dynamic> res = await Http.sendPost('/Contest/judgeIsJoin',
+        context: context, body: {'contest_id': _contest['id']});
     if (res['code'] == 1) {
       setState(() {
         _is_join = true;
@@ -231,9 +230,8 @@ class _ContestState extends State<ContestPage>
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/joinContest',
-        body: {'contest_id': _contest['id']});
+    Map<String, dynamic> res = await Http.sendPost('/Contest/joinContest',
+        context: context, body: {'contest_id': _contest['id']});
     if (res['code'] == 1) {
       setState(() {
         _is_join = true;
@@ -247,14 +245,12 @@ class _ContestState extends State<ContestPage>
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/userLookContest',
-        body: {'contest_id': _contest['id']});
+    Map<String, dynamic> res = await Http.sendPost('/Contest/userLookContest',
+        context: context, body: {'contest_id': _contest['id']});
     if (res['code'] == 1) {
       // ignore: unused_local_variable, use_build_context_synchronously
-      Map<String, dynamic> creater = await Http.sendPost(
-          context, '/User/lookUserData',
-          body: {'user_id': res['data']['createrid']});
+      Map<String, dynamic> creater = await Http.sendPost('/User/lookUserData',
+          context: context, body: {'user_id': res['data']['createrid']});
       if (creater['code'] == 1) {
         setState(() {
           _contest = res['data'];
@@ -273,7 +269,8 @@ class _ContestState extends State<ContestPage>
       return;
     }
     Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/lookContestProblem',
+        '/Contest/lookContestProblem',
+        context: context,
         body: {'contest_id': _contest['id']});
     if (res['code'] == 1) {
       setState(() {
@@ -287,7 +284,8 @@ class _ContestState extends State<ContestPage>
       return;
     }
     Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/frontendJudgeIsMyContest',
+        '/Contest/frontendJudgeIsMyContest',
+        context: context,
         body: {'contest_id': _contest['id']});
     if (res['code'] == 1) {
       setState(() {
@@ -303,8 +301,8 @@ class _ContestState extends State<ContestPage>
     setState(() {
       seeCleanCache = false;
     });
-    await Http.sendPost(context, '/Contest/DeleteRank',
-        body: {'contest_id': _contest['id']});
+    await Http.sendPost('/Contest/DeleteRank',
+        context: context, body: {'contest_id': _contest['id']});
     setState(() {
       seeCleanCache = true;
     });
@@ -318,7 +316,8 @@ class _ContestState extends State<ContestPage>
       seeCodeCheck = false;
     });
     Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/codeCheckSimilarity',
+        '/Contest/codeCheckSimilarity',
+        context: context,
         body: {'contest_id': _contest['id']});
     setState(() {
       seeCodeCheck = true;

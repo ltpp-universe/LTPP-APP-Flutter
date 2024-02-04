@@ -114,14 +114,12 @@ class _ArticleState extends State<ArticlePage>
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Article/loadOneArticle',
-        body: {'article_id': _article['id']});
+    Map<String, dynamic> res = await Http.sendPost('/Article/loadOneArticle',
+        context: context, body: {'article_id': _article['id']});
     if (res['code'] == 1) {
       // ignore: unused_local_variable, use_build_context_synchronously
-      Map<String, dynamic> writer = await Http.sendPost(
-          context, '/User/lookUserData',
-          body: {'user_id': res['data']['writerid']});
+      Map<String, dynamic> writer = await Http.sendPost('/User/lookUserData',
+          context: context, body: {'user_id': res['data']['writerid']});
       if (writer['code'] == 1) {
         setState(() {
           _writer = writer['data'];

@@ -102,8 +102,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPageView> {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Verification/sendPassword',
+    Map<String, dynamic> res = await Http.sendPost('/Verification/sendPassword',
+        context: context,
         body: {'name': name_controller.text, 'to': email_controller.text});
     if (res['code'] == 1) {
       Global.toLoginPage(context);

@@ -106,9 +106,8 @@ class _ContestListState extends State<ContestSearchPage>
         _get_data = false;
       });
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Contest/searchContest',
-        body: {'page': page++, 'limit': limit, 'key': key});
+    Map<String, dynamic> res = await Http.sendPost('/Contest/searchContest',
+        context: context, body: {'page': page++, 'limit': limit, 'Key': key});
 
     if (res['code'] == 1) {
       if (res['data'].length == 0) {

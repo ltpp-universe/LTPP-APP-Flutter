@@ -44,12 +44,15 @@ class _MyArticleCommentState extends State<MyArticleComment> {
     }
     is_lock = true;
     // ignore: use_build_context_synchronously
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/ArticleComment/loadComment', body: {
-      'article_id': widget.id,
-      'comment_id':
-          comment_list.isEmpty ? 0 : comment_list[comment_list.length - 1]['id']
-    });
+    Map<String, dynamic> res = await Http.sendPost(
+        '/ArticleComment/loadComment',
+        context: context,
+        body: {
+          'article_id': widget.id,
+          'comment_id': comment_list.isEmpty
+              ? 0
+              : comment_list[comment_list.length - 1]['id']
+        });
     if (res['data'].length > 0) {
       setState(() {
         comment_list = res['data'];

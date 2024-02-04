@@ -39,8 +39,8 @@ class _ChatListState extends State<ChatListPage>
       return;
     }
     Map<String, dynamic> res = await Http.sendPost(
-      context,
       '/Chat/getUserAndGroupList',
+      context: context,
     );
     if (res['code'] == 1) {
       setState(() {
@@ -123,7 +123,7 @@ class _ChatListState extends State<ChatListPage>
     if (!mounted) {
       return;
     }
-    await Http.sendPost(context, '/Chat/clearNolookNum', body: {
+    await Http.sendPost('/Chat/clearNolookNum', context: context, body: {
       'user_id': (Global.chat_list[loc]['id'] ?? ''),
       'type': (Global.chat_list[loc]['type'] ?? '')
     });

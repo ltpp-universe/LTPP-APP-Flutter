@@ -110,14 +110,13 @@ class _OjState extends State<OjPage> with AutomaticKeepAliveClientMixin {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Oj/lookOneProblem',
+    Map<String, dynamic> res = await Http.sendPost('/Oj/lookOneProblem',
+        context: context,
         body: {'problem_id': _oj['id'], 'contest_id': widget._contest_id});
     if (res['code'] == 1) {
       // ignore: unused_local_variable, use_build_context_synchronously
-      Map<String, dynamic> creater = await Http.sendPost(
-          context, '/User/lookUserData',
-          body: {'user_id': res['data']['createrid']});
+      Map<String, dynamic> creater = await Http.sendPost('/User/lookUserData',
+          context: context, body: {'user_id': res['data']['createrid']});
       if (creater['code'] == 1) {
         setState(() {
           _oj = res['data'];

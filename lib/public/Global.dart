@@ -20,6 +20,7 @@
  */
 // ignore: file_names
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ltpp/assembly/MyDialog.dart';
@@ -178,6 +179,8 @@ class Global {
     'images/dbimage/f81d26073759f5a5f2835056d262223f.jpg'
   ];
 
+  static List<dynamic> charset = [];
+
   static Map<String, Uint8List> image_cache = {};
 
   static List chat_list = [];
@@ -316,13 +319,43 @@ class Global {
     Clipboard.setData(ClipboardData(text: text));
   }
 
+  static Future<void> getCharset() async {
+    Map<String, dynamic> res = await Http.sendPost('/Cloudfile/loadCharset');
+    Global.charset = res['data'];
+  }
+
+  static Future<String> base64Encode(String str) async {
+    if (Global.charset.isEmpty) {
+      return '';
+    }
+
+    str = str.toString();
+    int len = str.length;
+    String bin = '';
+    for (int i = 0; i < len; ++i) {
+      bin += str[i].codeUnitAt(0).toRadixString(2).padLeft(24, '0');
+    }
+
+    len = bin.length;
+    String base64_encode = '';
+    for (int i = 0; i < len; i += 6) {
+      String tem_bin = '';
+      for (int j = i; j - i < 6 && j < len; ++j) {
+        tem_bin += bin[j];
+      }
+      base64_encode += Global.charset[int.parse(tem_bin, radix: 2)] as String;
+    }
+    return base64_encode;
+  }
+
   static Future init() async {
+    await Global.getCharset();
     prefs = await SharedPreferences.getInstance();
     Map data = await getFileData();
-    Global.authorization = data['authorization'] ?? '';
-    setKey('authorization', authorization);
-    Global.key = data['key'] ?? '';
-    setKey('key', key);
+    Global.authorization = data['Authorization'] ?? '';
+    setKey('Authorization', authorization);
+    Global.key = data['Key'] ?? '';
+    setKey('Key', key);
     await Global.loadAssets();
     print('图片缓存结束');
     if (Global.authorization != '' && Global.key != '') {
@@ -331,7 +364,10 @@ class Global {
   }
 
   static void onlineHeart(BuildContext context) {
-    Http.sendPost(context, '/User/sendHeart');
+    Http.sendPost(
+      '/User/sendHeart',
+      context: context,
+    );
   }
 
   // 将图片读入内存
@@ -346,15 +382,15 @@ class Global {
 
   // ignore: non_constant_identifier_names
   static setKey(String save_key, String save_value) async {
-    if (save_key == 'authorization') {
+    if (save_key == 'Authorization') {
       Global.authorization = save_value;
-    } else if (save_key == 'key') {
+    } else if (save_key == 'Key') {
       Global.key = save_value;
     }
     await prefs.setString(Global.key, save_value);
     creatFile(jsonEncode({
-      'authorization': Global.authorization,
-      'key': key,
+      'Authorization': Global.authorization,
+      'Key': key,
     }));
   }
 
@@ -401,8 +437,8 @@ class Global {
   static clearFileData() async {
     Global.authorization = '';
     Global.key = '';
-    await prefs.setString('authorization', '');
-    await prefs.setString('key', '');
+    await prefs.setString('Authorization', '');
+    await prefs.setString('Key', '');
     creatFile('');
   }
 

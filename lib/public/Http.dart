@@ -32,9 +32,10 @@ class Http {
    * post请求
    */
   // ignore: non_constant_identifier_names
-  static Future<Map<String, dynamic>> sendPost(
-      BuildContext context, String http_url,
-      {Map<String, String>? headers, Object? body}) async {
+  static Future<Map<String, dynamic>> sendPost(String http_url,
+      {BuildContext? context,
+      Map<String, String>? headers,
+      Object? body}) async {
     // ignore: non_constant_identifier_names, unused_local_variable
     String old_url = http_url;
     String root_url =
@@ -47,26 +48,31 @@ class Http {
         http.options.headers = headers;
       }
       // ignore: prefer_interpolation_to_compose_strings
-      http.options.headers['authorization'] = 'Bearer ' + Global.authorization;
-      http.options.headers['key'] = Global.key;
-
+      http.options.headers['Authorization'] = 'Bearer ' + Global.authorization;
+      http.options.headers['Key'] = Global.key;
+      if (Global.charset != []) {
+        http.options.headers['RequestId'] = await Global.base64Encode(
+            DateTime.now().millisecondsSinceEpoch.toString());
+      }
       Response response = await http.post(http_url, data: body);
       Map<String, dynamic> response_json =
           convert.jsonDecode(response.toString()) as Map<String, dynamic>;
       if (response_json['code'] == 500) {
-        await Global.setKey('authorization', '');
-        await Global.setKey('key', '');
+        await Global.setKey('Authorization', '');
+        await Global.setKey('Key', '');
         await MyWebSocket.close();
-        // ignore: use_build_context_synchronously
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
-          ),
-          (route) => false,
-        );
+        if (context != null) {
+          // ignore: use_build_context_synchronously
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+            (route) => false,
+          );
+        }
       }
-      if (response_json['code'] <= 0) {
+      if (response_json['code'] <= 0 && context != null) {
         // ignore: use_build_context_synchronously
         MyDialog(context, content: response_json['msg'] ?? '请求失败');
       }
@@ -84,8 +90,8 @@ class Http {
   // ignore: non_constant_identifier_names
   static Future<Map<String, dynamic>> sendGet(
     // ignore: non_constant_identifier_names
-    BuildContext context,
     String http_url, {
+    BuildContext? context,
     Map<String, String>? headers,
   }) async {
     String root_url =
@@ -98,24 +104,31 @@ class Http {
         http.options.headers = headers;
       }
 
-      http.options.headers['authorization'] = Global.authorization;
-      http.options.headers['key'] = Global.key;
+      http.options.headers['Authorization'] = Global.authorization;
+      http.options.headers['Key'] = Global.key;
+      if (Global.charset != []) {
+        http.options.headers['RequestId'] = await Global.base64Encode(
+            DateTime.now().millisecondsSinceEpoch.toString());
+      }
       Response response = await http.get(http_url);
       Map<String, dynamic> response_json =
           convert.jsonDecode(response.toString()) as Map<String, dynamic>;
       if (response_json['code'] == 500) {
-        await Global.setKey('authorization', '');
-        await Global.setKey('key', '');
+        await Global.setKey('Authorization', '');
+        await Global.setKey('Key', '');
         // ignore: use_build_context_synchronously
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginPage(),
-          ),
-          (route) => false,
-        );
+        if (context != null) {
+          // ignore: use_build_context_synchronously
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const LoginPage(),
+            ),
+            (route) => false,
+          );
+        }
       }
-      if (response_json['code'] != 1) {
+      if (response_json['code'] != 1 && context != null) {
         // ignore: use_build_context_synchronously
         MyDialog(context, content: response_json['msg'] ?? '请求失败');
       }

@@ -39,7 +39,7 @@ class _MyVideoFabulousAndCollectionButtonState
       is_fabulous = false;
     });
 
-    await Http.sendPost(context, '/Video/deleteFabulousVideo', body: {
+    await Http.sendPost('/Video/deleteFabulousVideo', context: context, body: {
       'video_id': id,
     });
   }
@@ -53,7 +53,7 @@ class _MyVideoFabulousAndCollectionButtonState
       is_love = false;
     });
 
-    await Http.sendPost(context, '/Video/deleteLoveVideo', body: {
+    await Http.sendPost('/Video/deleteLoveVideo', context: context, body: {
       'video_id': id,
     });
   }
@@ -66,7 +66,7 @@ class _MyVideoFabulousAndCollectionButtonState
       is_love = true;
     });
 
-    await Http.sendPost(context, '/Video/loveVideo', body: {
+    await Http.sendPost('/Video/loveVideo', context: context, body: {
       'video_id': id,
     });
   }
@@ -79,7 +79,7 @@ class _MyVideoFabulousAndCollectionButtonState
       is_fabulous = true;
     });
 
-    await Http.sendPost(context, '/Video/fabulousVideo', body: {
+    await Http.sendPost('/Video/fabulousVideo', context: context, body: {
       'video_id': id,
     });
   }
@@ -87,7 +87,7 @@ class _MyVideoFabulousAndCollectionButtonState
   Future<void> _judgeIsFabulous() async {
     // ignore: use_build_context_synchronously
     Map<String, dynamic> res =
-        await Http.sendPost(context, '/Video/judgeIsFabulous', body: {
+        await Http.sendPost('/Video/judgeIsFabulous', context: context, body: {
       'video_id': id,
     });
     if (res['data'] == 1) {
@@ -104,7 +104,7 @@ class _MyVideoFabulousAndCollectionButtonState
   Future<void> _judgeIsCollection() async {
     // ignore: use_build_context_synchronously
     Map<String, dynamic> res =
-        await Http.sendPost(context, '/Video/judgeIsLove', body: {
+        await Http.sendPost('/Video/judgeIsLove', context: context, body: {
       'video_id': id,
     });
     if (res['data'] == 1) {

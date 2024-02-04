@@ -35,10 +35,12 @@ class _MyFollowButtonState extends State<MyFollowButton> {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Article/collectionOneArticle', body: {
-      'article_id': widget.id,
-    });
+    Map<String, dynamic> res = await Http.sendPost(
+        '/Article/collectionOneArticle',
+        context: context,
+        body: {
+          'article_id': widget.id,
+        });
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
       MyDialog(context, content: res['msg']);
@@ -52,10 +54,11 @@ class _MyFollowButtonState extends State<MyFollowButton> {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Article/deleteLoveArticle', body: {
-      'article_id': widget.id,
-    });
+    Map<String, dynamic> res = await Http.sendPost('/Article/deleteLoveArticle',
+        context: context,
+        body: {
+          'article_id': widget.id,
+        });
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
       MyDialog(context, content: res['msg']);
@@ -70,10 +73,12 @@ class _MyFollowButtonState extends State<MyFollowButton> {
       return;
     }
     // ignore: use_build_context_synchronously
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Article/fabulousOneArticle', body: {
-      'article_id': widget.id,
-    });
+    Map<String, dynamic> res = await Http.sendPost(
+        '/Article/fabulousOneArticle',
+        context: context,
+        body: {
+          'article_id': widget.id,
+        });
 
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously

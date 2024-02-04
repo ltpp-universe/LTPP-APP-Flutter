@@ -100,8 +100,8 @@ class _LoginPageState extends State<LoginPageView> {
 
   void getMyData(BuildContext context) async {
     Map<String, dynamic> res = await Http.sendPost(
-      context,
       '/User/getMyData',
+      context: context,
     );
     if (res['code'] == 1) {
       setState(() {
@@ -126,14 +126,15 @@ class _LoginPageState extends State<LoginPageView> {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(context, '/Login/judgeLogin',
+    Map<String, dynamic> res = await Http.sendPost('/Login/judgeLogin',
+        context: context,
         body: {
           'name': name_controller.text,
           'password': password_controller.text
         });
     if (res['code'] == 1 || res['code'] == 2) {
-      await Global.setKey('authorization', res['authorization']);
-      await Global.setKey('key', res['key']);
+      await Global.setKey('Authorization', res['authorization']);
+      await Global.setKey('Key', res['key']);
       MyWebSocket.init();
       eventBus.fire(Event('login'));
       // ignore: use_build_context_synchronously

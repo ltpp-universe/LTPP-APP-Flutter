@@ -109,8 +109,9 @@ class _ArticleListState extends State<ArticleSearchPage>
     // ignore: non_constant_identifier_names, prefer_is_empty
     String last_id = data.length > 0 ? data[data.length - 1]['id'] : '';
     Map<String, dynamic> res = await Http.sendPost(
-        context, '/Article/allArticleKeySearch',
-        body: {'article_id': last_id, 'do': 'down', 'limit': 50, 'key': key});
+        '/Article/allArticleKeySearch',
+        context: context,
+        body: {'article_id': last_id, 'do': 'down', 'limit': 50, 'Key': key});
 
     if (res['code'] == 1) {
       if (res['data'].length == 0) {

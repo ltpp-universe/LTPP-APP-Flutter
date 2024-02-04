@@ -102,8 +102,8 @@ class _ChatSearchState extends State<ChatSearchPage>
     setState(() {
       _get_data = false;
     });
-    Map<String, dynamic> res =
-        await Http.sendPost(context, '/Chat/ChatFindUser', body: {'key': key});
+    Map<String, dynamic> res = await Http.sendPost('/Chat/ChatFindUser',
+        context: context, body: {'Key': key});
 
     if (res['code'] == 1) {
       setState(() {
@@ -121,7 +121,7 @@ class _ChatSearchState extends State<ChatSearchPage>
     if (!mounted) {
       return;
     }
-    await Http.sendPost(context, '/Chat/clearNolookNum', body: {
+    await Http.sendPost('/Chat/clearNolookNum', context: context, body: {
       'user_id': (data[loc]['id'] ?? ''),
       'type': (data[loc]['type'] ?? '')
     });

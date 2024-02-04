@@ -195,7 +195,7 @@ class _RegisterPageState extends State<RegisterPageView> {
       return;
     }
     Map<String, dynamic> res =
-        await Http.sendPost(context, '/Register/judgeRegister', body: {
+        await Http.sendPost('/Register/judgeRegister', context: context, body: {
       'name': name_controller.text,
       'email': email_controller.text,
       'password': password_controller.text,
@@ -215,8 +215,8 @@ class _RegisterPageState extends State<RegisterPageView> {
     if (!mounted) {
       return;
     }
-    Map<String, dynamic> res = await Http.sendPost(
-        context, '/Verification/send',
+    Map<String, dynamic> res = await Http.sendPost('/Verification/send',
+        context: context,
         body: {'name': name_controller.text, 'to': email_controller.text});
 
     if (res['code'] == 1) {
