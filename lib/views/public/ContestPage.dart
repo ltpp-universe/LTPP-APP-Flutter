@@ -14,6 +14,7 @@
 // 一道题目详情页面
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ltpp/assembly/MyDialog.dart';
 import '../../assembly/MyHeadimage.dart';
 import '../../assembly/MyLoading.dart';
 import '../../assembly/MyMarkdown.dart';
@@ -144,7 +145,7 @@ class _ContestState extends State<ContestPage>
         const SizedBox(height: 16),
       );
     }
-    if (is_mycontest && rank_url != '') {
+    if (rank_url != '') {
       main_list_view.add(FractionallySizedBox(
         widthFactor: 0.86,
         child: ElevatedButton(
@@ -324,7 +325,7 @@ class _ContestState extends State<ContestPage>
     });
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
-      Global.toHtmlPage(context, '代码查重', res['url']);
+      MyDialog(context, content: res['msg'] ?? '请求失败');
     }
   }
 }

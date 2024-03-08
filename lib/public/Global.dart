@@ -43,6 +43,8 @@ import '../views/public/OjPage.dart';
 import '../views/public/UserPage.dart';
 
 class Global {
+  // ignore: constant_identifier_names
+  static const String app_name = 'LTPP在线开发平台';
   static bool public_network = true;
   // ignore: non_constant_identifier_names, prefer_final_fields
   static String _file_name = 'user';

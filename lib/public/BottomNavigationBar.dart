@@ -16,12 +16,14 @@ import '../views/public/ContestListPage.dart';
 import '../views/public/VideoPage.dart';
 import '../views/public/ChatListPage.dart';
 import '../views/back/BackPage.dart';
+import '../views//public/IdePage.dart';
 
 // ignore: constant_identifier_names
 const List<BottomNavigationBarItem> bottom_navigation_bar_list = [
   BottomNavigationBarItem(label: '首页', icon: Icon(Icons.home)),
   BottomNavigationBarItem(label: '题库', icon: Icon(Icons.book)),
   BottomNavigationBarItem(label: '竞赛', icon: Icon(Icons.people_alt_rounded)),
+  BottomNavigationBarItem(label: '编辑器', icon: Icon(Icons.code)),
   BottomNavigationBarItem(label: '短视频', icon: Icon(Icons.video_file_rounded)),
   BottomNavigationBarItem(label: '聊天', icon: Icon(Icons.chat)),
   BottomNavigationBarItem(label: '我的', icon: Icon(Icons.account_box)),
@@ -36,10 +38,12 @@ Widget getView(index) {
     case 2:
       return const ContestListPage();
     case 3:
-      return const VideoPage();
+      return IdePage();
     case 4:
-      return const ChatListPage();
+      return const VideoPage();
     case 5:
+      return const ChatListPage();
+    case 6:
       return const BackPage();
     default:
       return const ArticleListPage();
