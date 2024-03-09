@@ -12,6 +12,7 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ltpp/public/Http.dart';
 import 'package:ltpp/views/public/LoginPage.dart';
 import './public/BottomNavigationBar.dart';
@@ -23,6 +24,11 @@ void main() async {
   // 关闭Flutter的系统输出
   debugPrint = (String? message, {int? wrapWidth}) {};
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom]);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   await Global.init();
   runApp(const MyApp());
 }

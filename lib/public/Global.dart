@@ -352,7 +352,6 @@ class Global {
     Global.key = data['key'] ?? '';
     setKey('key', key);
     await Global.loadAssets();
-    print('图片缓存结束');
     if (Global.authorization != '' && Global.key != '') {
       MyWebSocket.init();
     }
