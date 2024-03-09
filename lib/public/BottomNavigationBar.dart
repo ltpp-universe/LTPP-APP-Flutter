@@ -16,7 +16,7 @@ import '../views/public/ContestListPage.dart';
 import '../views/public/VideoPage.dart';
 import '../views/public/ChatListPage.dart';
 import '../views/back/BackPage.dart';
-import '../views//public/IdePage.dart';
+import '../views//public/ToolsPage.dart';
 
 // ignore: constant_identifier_names
 const List<BottomNavigationBarItem> bottom_navigation_bar_list = [
@@ -38,7 +38,7 @@ Widget getView(index) {
     case 2:
       return const ContestListPage();
     case 3:
-      return IdePage();
+      return ToolsPage();
     case 4:
       return const VideoPage();
     case 5:

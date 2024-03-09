@@ -155,7 +155,8 @@ class _ContestState extends State<ContestPage>
                 context,
                 // ignore: prefer_interpolation_to_compose_strings
                 'LTPP ' + (_contest['name'] ?? '') + ' 竞赛实时排名',
-                rank_url)),
+                rank_url,
+                true)),
       ));
       main_list_view.add(
         const SizedBox(height: 16),

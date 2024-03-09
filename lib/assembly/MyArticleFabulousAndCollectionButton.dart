@@ -117,7 +117,7 @@ class _MyArticleFabulousAndCollectionButtonState
     if (res['code'] == 1) {
       // ignore: use_build_context_synchronously
       Global.toHtmlPage(
-          context, name, res['data'] + '/Article/oneArticle?path=' + id);
+          context, name, res['data'] + '/Article/oneArticle?path=' + id, true);
     }
   }
 

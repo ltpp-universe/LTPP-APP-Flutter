@@ -242,9 +242,13 @@ class Global {
     }
   }
 
-  static toHtmlPage(BuildContext context, String title, String url) {
-    Global.copy(url);
-    MyDialog(context, content: '外链地址复制成功');
+  static toHtmlPage(
+      BuildContext context, String title, String url, bool is_copy) {
+    // ignore: unrelated_type_equality_checks
+    if (is_copy == true) {
+      Global.copy(url);
+      MyDialog(context, content: '外链地址复制成功');
+    }
     Navigator.push(
         context,
         MaterialPageRoute(
