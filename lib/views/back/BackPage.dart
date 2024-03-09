@@ -31,6 +31,7 @@
 // 后台页面
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:ltpp/assembly/KeepAliveWrapper.dart';
 import 'package:ltpp/assembly/MyUserData.dart';
 import 'package:ltpp/public/MyWebSocket.dart';
 import '../../public/Event.dart';
@@ -58,7 +59,8 @@ class BackPageState extends State<BackPage> {
           ),
           toolbarHeight: Global.app_bar_height,
           centerTitle: true),
-      body: const SafeArea(child: Center(child: BackView())),
+      body: const SafeArea(
+          child: KeepAliveWrapper(child: Center(child: BackView()))),
     );
   }
 }

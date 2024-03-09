@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:ltpp/assembly/KeepAliveWrapper.dart';
 
 // ignore: must_be_immutable
 class MyCard extends StatelessWidget {
@@ -41,10 +42,11 @@ class MyCard extends StatelessWidget {
       margin: _LTRB, // 外边距
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
-        child: SizedBox(
+        child: KeepAliveWrapper(
+            child: SizedBox(
           height: _height,
           child: _child,
-        ),
+        )),
       ),
     );
   }

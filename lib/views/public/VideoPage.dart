@@ -2,6 +2,7 @@
 // ignore: file_names
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 import 'package:flutter/material.dart';
+import 'package:ltpp/assembly/KeepAliveWrapper.dart';
 import '../../assembly/MyDialog.dart';
 import '../../assembly/MyLoading.dart';
 import '../../assembly/VideoMiddleware.dart';
@@ -41,8 +42,9 @@ class _VideoPageState extends State<VideoPage>
           toolbarHeight: Global.app_bar_height,
           centerTitle: true),
       body: SafeArea(
-          child: Center(
-              child: PageView.builder(
+          child: KeepAliveWrapper(
+              child: Center(
+                  child: PageView.builder(
         pageSnapping: true,
         scrollDirection: Axis.vertical,
         onPageChanged: (int loc) {
@@ -59,7 +61,7 @@ class _VideoPageState extends State<VideoPage>
         },
         itemCount: _list_data.length,
         controller: _controller,
-      ))),
+      )))),
     );
   }
 

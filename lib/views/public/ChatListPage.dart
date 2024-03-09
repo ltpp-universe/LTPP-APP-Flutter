@@ -12,6 +12,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:ltpp/assembly/ChatLine.dart';
+import 'package:ltpp/assembly/KeepAliveWrapper.dart';
 import 'package:ltpp/assembly/MySearch.dart';
 import 'package:ltpp/public/Event.dart';
 import '../../assembly/MyLoading.dart';
@@ -112,11 +113,12 @@ class _ChatListState extends State<ChatListPage>
             toolbarHeight: Global.app_bar_height,
             centerTitle: true),
         body: SafeArea(
+            child: KeepAliveWrapper(
           child: ListView(
             controller: _scrollController,
             children: _view_list,
           ),
-        ));
+        )));
   }
 
   void clearNolookNum(int loc) async {

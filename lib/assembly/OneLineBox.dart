@@ -14,6 +14,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../assembly/MyCard.dart';
 import '../public/Global.dart';
+import 'KeepAliveWrapper.dart';
 
 // ignore: must_be_immutable
 class OneLineBox extends StatefulWidget {
@@ -82,7 +83,8 @@ class _OneLineBoxState extends State<OneLineBox>
     return MyCard(
       height: widget._height,
       is_no_back_color: true,
-      child: Stack(
+      child: KeepAliveWrapper(
+          child: Stack(
         children: [
           // 背景图片
           Positioned.fill(
@@ -138,7 +140,7 @@ class _OneLineBoxState extends State<OneLineBox>
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 }

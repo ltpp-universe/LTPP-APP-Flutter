@@ -12,6 +12,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:ltpp/assembly/ContestLine.dart';
+import 'package:ltpp/assembly/KeepAliveWrapper.dart';
 import 'package:ltpp/assembly/MySearch.dart';
 import '../../assembly/MyLoading.dart';
 import '../../public/Global.dart';
@@ -123,10 +124,11 @@ class _ContestListState extends State<ContestListPage>
           toolbarHeight: Global.app_bar_height,
           centerTitle: true),
       body: SafeArea(
-          child: ListView(
+          child: KeepAliveWrapper(
+              child: ListView(
         controller: _scrollController,
         children: _view_list,
-      )),
+      ))),
     );
   }
 }

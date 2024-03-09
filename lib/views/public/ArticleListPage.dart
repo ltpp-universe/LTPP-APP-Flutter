@@ -11,6 +11,7 @@
 // 首页
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:ltpp/assembly/KeepAliveWrapper.dart';
 import 'package:ltpp/assembly/MySearch.dart';
 import '../../assembly/MyLoading.dart';
 import '../../assembly/OneLineBox.dart';
@@ -85,10 +86,11 @@ class _ArticleListState extends State<ArticleListPage>
           toolbarHeight: Global.app_bar_height,
           centerTitle: true),
       body: SafeArea(
-          child: ListView(
+          child: KeepAliveWrapper(
+              child: ListView(
         controller: _scrollController,
         children: _view_list,
-      )),
+      ))),
     );
   }
 
