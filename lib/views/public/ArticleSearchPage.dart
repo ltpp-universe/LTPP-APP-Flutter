@@ -111,7 +111,7 @@ class _ArticleListState extends State<ArticleSearchPage>
     Map<String, dynamic> res = await Http.sendPost(
         '/Article/allArticleKeySearch',
         context: context,
-        body: {'article_id': last_id, 'do': 'down', 'limit': 50, 'Key': key});
+        body: {'article_id': last_id, 'do': 'down', 'limit': 50, 'key': key});
 
     if (res['code'] == 1) {
       if (res['data'].length == 0) {

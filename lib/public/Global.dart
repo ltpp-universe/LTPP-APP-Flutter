@@ -8,19 +8,8 @@
  * QQ:1491579574
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
  */
-/*
- * @Author: 18855190718 1491579574@qq.com
- * @Date: 2023-03-06 18:26:40
- * @LastEditors: SQS 1491579574@qq.com
- * @LastEditTime: 2023-05-25 11:25:30
- * @FilePath: \study_bug\lib\public\Global.dart
- * @Description: Email:1491579574@qq.com
- * QQ:1491579574
- * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
- */
 // ignore: file_names
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ltpp/assembly/MyDialog.dart';
@@ -358,10 +347,10 @@ class Global {
     await Global.getCharset();
     prefs = await SharedPreferences.getInstance();
     Map data = await getFileData();
-    Global.authorization = data['Authorization'] ?? '';
-    setKey('Authorization', authorization);
-    Global.key = data['Key'] ?? '';
-    setKey('Key', key);
+    Global.authorization = data['authorization'] ?? '';
+    setKey('authorization', authorization);
+    Global.key = data['key'] ?? '';
+    setKey('key', key);
     await Global.loadAssets();
     print('图片缓存结束');
     if (Global.authorization != '' && Global.key != '') {
@@ -388,15 +377,15 @@ class Global {
 
   // ignore: non_constant_identifier_names
   static setKey(String save_key, String save_value) async {
-    if (save_key == 'Authorization') {
+    if (save_key == 'authorization') {
       Global.authorization = save_value;
-    } else if (save_key == 'Key') {
+    } else if (save_key == 'key') {
       Global.key = save_value;
     }
     await prefs.setString(Global.key, save_value);
     creatFile(jsonEncode({
-      'Authorization': Global.authorization,
-      'Key': key,
+      'authorization': Global.authorization,
+      'key': key,
     }));
   }
 
@@ -443,8 +432,8 @@ class Global {
   static clearFileData() async {
     Global.authorization = '';
     Global.key = '';
-    await prefs.setString('Authorization', '');
-    await prefs.setString('Key', '');
+    await prefs.setString('authorization', '');
+    await prefs.setString('key', '');
     creatFile('');
   }
 

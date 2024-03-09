@@ -133,8 +133,8 @@ class _LoginPageState extends State<LoginPageView> {
           'password': password_controller.text
         });
     if (res['code'] == 1 || res['code'] == 2) {
-      await Global.setKey('Authorization', res['authorization']);
-      await Global.setKey('Key', res['key']);
+      await Global.setKey('authorization', res['authorization']);
+      await Global.setKey('key', res['key']);
       MyWebSocket.init();
       eventBus.fire(Event('login'));
       // ignore: use_build_context_synchronously

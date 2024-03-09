@@ -103,7 +103,7 @@ class _ChatSearchState extends State<ChatSearchPage>
       _get_data = false;
     });
     Map<String, dynamic> res = await Http.sendPost('/Chat/ChatFindUser',
-        context: context, body: {'Key': key});
+        context: context, body: {'key': key});
 
     if (res['code'] == 1) {
       setState(() {

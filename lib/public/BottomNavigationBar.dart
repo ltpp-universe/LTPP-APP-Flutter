@@ -20,13 +20,13 @@ import '../views//public/ToolsPage.dart';
 
 // ignore: constant_identifier_names
 const List<BottomNavigationBarItem> bottom_navigation_bar_list = [
-  BottomNavigationBarItem(label: '首页', icon: Icon(Icons.home)),
+  BottomNavigationBarItem(label: '文章', icon: Icon(Icons.home)),
   BottomNavigationBarItem(label: '题库', icon: Icon(Icons.book)),
   BottomNavigationBarItem(label: '竞赛', icon: Icon(Icons.people_alt_rounded)),
-  BottomNavigationBarItem(label: '编辑器', icon: Icon(Icons.code)),
-  BottomNavigationBarItem(label: '短视频', icon: Icon(Icons.video_file_rounded)),
+  BottomNavigationBarItem(label: '工具', icon: Icon(Icons.pan_tool)),
+  BottomNavigationBarItem(label: '视频', icon: Icon(Icons.video_file_rounded)),
   BottomNavigationBarItem(label: '聊天', icon: Icon(Icons.chat)),
-  BottomNavigationBarItem(label: '我的', icon: Icon(Icons.account_box)),
+  BottomNavigationBarItem(label: '后台', icon: Icon(Icons.account_box)),
 ];
 
 Widget getView(index) {

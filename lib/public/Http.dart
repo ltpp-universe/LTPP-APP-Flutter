@@ -48,8 +48,8 @@ class Http {
         http.options.headers = headers;
       }
       // ignore: prefer_interpolation_to_compose_strings
-      http.options.headers['Authorization'] = 'Bearer ' + Global.authorization;
-      http.options.headers['Key'] = Global.key;
+      http.options.headers['authorization'] = 'Bearer ' + Global.authorization;
+      http.options.headers['key'] = Global.key;
       if (Global.charset != []) {
         http.options.headers['RequestId'] = await Global.base64Encode(
             DateTime.now().millisecondsSinceEpoch.toString());
@@ -58,8 +58,8 @@ class Http {
       Map<String, dynamic> response_json =
           convert.jsonDecode(response.toString()) as Map<String, dynamic>;
       if (response_json['code'] == 500) {
-        await Global.setKey('Authorization', '');
-        await Global.setKey('Key', '');
+        await Global.setKey('authorization', '');
+        await Global.setKey('key', '');
         await MyWebSocket.close();
         if (context != null) {
           // ignore: use_build_context_synchronously
@@ -104,8 +104,8 @@ class Http {
         http.options.headers = headers;
       }
 
-      http.options.headers['Authorization'] = Global.authorization;
-      http.options.headers['Key'] = Global.key;
+      http.options.headers['authorization'] = Global.authorization;
+      http.options.headers['key'] = Global.key;
       if (Global.charset != []) {
         http.options.headers['RequestId'] = await Global.base64Encode(
             DateTime.now().millisecondsSinceEpoch.toString());
@@ -114,8 +114,8 @@ class Http {
       Map<String, dynamic> response_json =
           convert.jsonDecode(response.toString()) as Map<String, dynamic>;
       if (response_json['code'] == 500) {
-        await Global.setKey('Authorization', '');
-        await Global.setKey('Key', '');
+        await Global.setKey('authorization', '');
+        await Global.setKey('key', '');
         // ignore: use_build_context_synchronously
         if (context != null) {
           // ignore: use_build_context_synchronously
