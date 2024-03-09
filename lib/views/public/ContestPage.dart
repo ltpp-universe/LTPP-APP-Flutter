@@ -45,12 +45,14 @@ class _ContestState extends State<ContestPage>
   bool seeCleanCache = true;
   Map _contest = {};
   Map _creater = {};
-  bool is_mycontest = false;
+  bool _is_mycontest = false;
   bool _is_join = false;
   List<dynamic> _problem_list = [];
   String rank_url = '';
   // ignore: non_constant_identifier_names
   bool _has_data = false;
+  bool _has_password = true;
+  TextEditingController password_controller = TextEditingController();
   _ContestState(String contest_id) {
     _contest['id'] = contest_id;
     String root_url =
@@ -134,6 +136,18 @@ class _ContestState extends State<ContestPage>
       const SizedBox(height: 36),
     );
     if (!_is_join) {
+      if (_has_password) {
+        main_list_view.add(FractionallySizedBox(
+            widthFactor: 0.86,
+            child: TextField(
+              controller: password_controller,
+              autofocus: true,
+              decoration: const InputDecoration(
+                  labelText: '参赛密码',
+                  hintText: '参赛密码',
+                  prefixIcon: Icon(Icons.person)),
+            )));
+      }
       main_list_view.add(FractionallySizedBox(
         widthFactor: 0.86,
         child: ElevatedButton(
@@ -162,7 +176,7 @@ class _ContestState extends State<ContestPage>
         const SizedBox(height: 16),
       );
     }
-    if (is_mycontest && seeCodeCheck) {
+    if (_is_mycontest && seeCodeCheck) {
       main_list_view.add(FractionallySizedBox(
           widthFactor: 0.86,
           child: ElevatedButton(
@@ -174,7 +188,7 @@ class _ContestState extends State<ContestPage>
         const SizedBox(height: 16),
       );
     }
-    if (is_mycontest && seeCleanCache) {
+    if (_is_mycontest && seeCleanCache) {
       main_list_view.add(FractionallySizedBox(
         widthFactor: 0.86,
         child: ElevatedButton(
@@ -233,7 +247,11 @@ class _ContestState extends State<ContestPage>
       return;
     }
     Map<String, dynamic> res = await Http.sendPost('/Contest/joinContest',
-        context: context, body: {'contest_id': _contest['id']});
+        context: context,
+        body: {
+          'contest_id': _contest['id'],
+          'password': password_controller.text
+        });
     if (res['code'] == 1) {
       setState(() {
         _is_join = true;
@@ -257,6 +275,7 @@ class _ContestState extends State<ContestPage>
         setState(() {
           _contest = res['data'];
           _creater = creater['data'];
+          _has_password = _contest['password'];
           _has_data = true;
         });
       }
@@ -291,7 +310,7 @@ class _ContestState extends State<ContestPage>
         body: {'contest_id': _contest['id']});
     if (res['code'] == 1) {
       setState(() {
-        is_mycontest = res['data'] == 1 ? true : false;
+        _is_mycontest = res['data'] == 1 ? true : false;
       });
     }
   }
