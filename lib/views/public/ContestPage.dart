@@ -147,6 +147,9 @@ class _ContestState extends State<ContestPage>
                   hintText: '参赛密码',
                   prefixIcon: Icon(Icons.person)),
             )));
+        main_list_view.add(
+          const SizedBox(height: 36),
+        );
       }
       main_list_view.add(FractionallySizedBox(
         widthFactor: 0.86,
