@@ -108,13 +108,13 @@ class _ArticleListState extends State<ArticleListPage>
         '/Article/loadAllArticleList',
         context: context,
         body: {'article_id': last_id, 'do': 'down', 'limit': 50});
-
+    setState(() {
+      _get_data = true;
+    });
     if (res['code'] == 1) {
       if (res['data'].length == 0) {
         is_no_more = true;
-        setState(() {
-          _get_data = true;
-        });
+
         return;
       }
       setState(() {
@@ -122,7 +122,6 @@ class _ArticleListState extends State<ArticleListPage>
           tem['image'] = Global.getOneImage();
         }
         data.addAll(res['data']);
-        _get_data = true;
       });
       is_lock = false;
     } else {

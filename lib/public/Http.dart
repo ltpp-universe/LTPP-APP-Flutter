@@ -38,11 +38,10 @@ class Http {
       Object? body}) async {
     // ignore: non_constant_identifier_names, unused_local_variable
     String old_url = http_url;
-    String root_url =
-        Global.public_network ? Http.public_root_url : Http.private_root_url;
+
     try {
       if (!http_url.contains('http')) {
-        http_url = root_url + http_url;
+        http_url = Global.back_url + http_url;
       }
       if (headers != null) {
         http.options.headers = headers;
@@ -67,6 +66,7 @@ class Http {
             context,
             MaterialPageRoute(
               builder: (context) => const LoginPage(),
+              fullscreenDialog: true, // 使用全屏对话框风格
             ),
             (route) => false,
           );
@@ -94,11 +94,9 @@ class Http {
     BuildContext? context,
     Map<String, String>? headers,
   }) async {
-    String root_url =
-        Global.public_network ? Http.public_root_url : Http.private_root_url;
     try {
       if (!http_url.contains('http')) {
-        http_url = root_url + http_url;
+        http_url = Global.back_url + http_url;
       }
       if (headers != null) {
         http.options.headers = headers;
@@ -123,6 +121,7 @@ class Http {
             context,
             MaterialPageRoute(
               builder: (context) => const LoginPage(),
+              fullscreenDialog: true, // 使用全屏对话框风格
             ),
             (route) => false,
           );

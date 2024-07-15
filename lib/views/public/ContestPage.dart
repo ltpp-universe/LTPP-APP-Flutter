@@ -55,12 +55,12 @@ class _ContestState extends State<ContestPage>
   TextEditingController password_controller = TextEditingController();
   _ContestState(String contest_id) {
     _contest['id'] = contest_id;
-    String root_url =
-        Global.public_network ? Http.public_root_url : Http.private_root_url;
     // ignore: prefer_interpolation_to_compose_strings
     rank_url =
         // ignore: prefer_interpolation_to_compose_strings
-        '$root_url/Contest/publicContestRank?contest_id=' + _contest['id'];
+        Global.back_url +
+            '/Contest/publicContestRank?contest_id=' +
+            _contest['id'];
   }
 
   @override

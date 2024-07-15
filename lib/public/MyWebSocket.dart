@@ -55,9 +55,7 @@ class MyWebSocket {
   }
 
   static Future<void> init() async {
-    MyWebSocket.ws_url = Global.public_network
-        ? MyWebSocket.public_ws_url
-        : MyWebSocket.private_ws_url;
+    MyWebSocket.ws_url = Global.back_url;
     try {
       await MyWebSocket.connect();
       // ignore: avoid_print, prefer_interpolation_to_compose_strings

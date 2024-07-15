@@ -52,50 +52,61 @@ class _ResetPasswordPageState extends State<ResetPasswordPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child: Column(
-      children: <Widget>[
-        const SizedBox(height: 136),
-        TextField(
-          controller: name_controller,
-          autofocus: true,
-          decoration: const InputDecoration(
-              labelText: '用户名',
-              hintText: '用户名',
-              prefixIcon: Icon(Icons.person)),
-        ),
-        TextField(
-          controller: email_controller,
-          decoration: const InputDecoration(
-              labelText: '邮箱', hintText: '邮箱', prefixIcon: Icon(Icons.email)),
-        ),
-        Container(
-            alignment: Alignment.topCenter,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                    // ignore: sort_child_properties_last
-                    child: const Text('注册账号'),
-                    onPressed: () => Global.toRegisterPage(context)),
-                TextButton(
-                    // ignore: sort_child_properties_last
-                    child: const Text('登录账号'),
-                    onPressed: () => Global.toRegisterPage(context)),
+        body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Center(
+                child: Column(
+              children: <Widget>[
+                const SizedBox(height: 136),
+                TextField(
+                  controller: name_controller,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                      labelText: '用户名',
+                      hintText: '用户名',
+                      prefixIcon: Icon(Icons.person)),
+                ),
+                TextField(
+                  controller: email_controller,
+                  decoration: const InputDecoration(
+                      labelText: '邮箱',
+                      hintText: '邮箱',
+                      prefixIcon: Icon(Icons.email)),
+                ),
+                Container(
+                    alignment: Alignment.topCenter,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                            // ignore: sort_child_properties_last
+                            child: const Text('注册账号'),
+                            onPressed: () => Global.toRegisterPage(context)),
+                        TextButton(
+                            // ignore: sort_child_properties_last
+                            child: const Text('登录账号'),
+                            onPressed: () => Global.toRegisterPage(context)),
+                      ],
+                    )),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: FractionallySizedBox(
+                      widthFactor: 0.86,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                              side: BorderSide(width: 0, color: Colors.white),
+                            ),
+                          ),
+                          // ignore: sort_child_properties_last
+                          child: const Text('重置密码'),
+                          onPressed: () => _resetPassword())),
+                ),
               ],
-            )),
-        const SizedBox(height: 16),
-        SizedBox(
-          width: double.infinity,
-          child: FractionallySizedBox(
-              widthFactor: 0.86,
-              child: ElevatedButton(
-                  // ignore: sort_child_properties_last
-                  child: const Text('重置密码'),
-                  onPressed: () => _resetPassword())),
-        ),
-      ],
-    )));
+            ))));
   }
 
   _resetPassword() async {

@@ -104,6 +104,12 @@ class _BackViewState extends State<BackView> {
     if (_authorization != null && _key != null && _authorization == '' ||
         _key == '') {
       return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              side: BorderSide(width: 0, color: Colors.white),
+            ),
+          ),
           // ignore: sort_child_properties_last, prefer_single_quotes
           child: const Text("登录"),
           onPressed: () => _toLogin());
@@ -116,6 +122,12 @@ class _BackViewState extends State<BackView> {
             child: FractionallySizedBox(
               widthFactor: 0.86,
               child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      side: BorderSide(width: 0, color: Colors.white),
+                    ),
+                  ),
                   // ignore: sort_child_properties_last, prefer_single_quotes
                   child: const Text("退出登录"),
                   onPressed: () => _toLogout()),
@@ -139,6 +151,7 @@ class _BackViewState extends State<BackView> {
       context,
       MaterialPageRoute(
         builder: (context) => const LoginPage(),
+        fullscreenDialog: true, // 使用全屏对话框风格
       ),
       (route) => false,
     );
