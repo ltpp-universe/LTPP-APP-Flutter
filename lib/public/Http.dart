@@ -22,11 +22,6 @@ Dio http = Dio();
 
 class Http {
   // ignore: constant_identifier_names
-  // 服务器地址
-  // ignore: constant_identifier_names
-  static const public_root_url = 'https://api.ltpp.vip';
-  // ignore: constant_identifier_names
-  static const private_root_url = 'http://hbnuoj.ltpp.vip:48787';
   // ignore: unused_element, slash_for_doc_comments
   /**
    * post请求

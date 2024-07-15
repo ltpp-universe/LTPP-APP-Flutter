@@ -12,7 +12,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ltpp/assembly/MyDialog.dart';
 import 'package:ltpp/public/Http.dart';
 import 'package:ltpp/public/MyWebSocket.dart';
 import 'package:ltpp/views/public/ArticleCommentPage.dart';
@@ -34,7 +33,9 @@ import '../views/public/UserPage.dart';
 class Global {
   // ignore: constant_identifier_names
   static const String app_name = 'LTPP在线开发平台';
-  static String back_url = Http.public_root_url;
+  // ignore: constant_identifier_names
+  static const public_root_url = 'https://api.ltpp.vip';
+  static String back_url = Global.public_root_url;
   // ignore: non_constant_identifier_names, prefer_final_fields
   static String _file_name = 'user';
   static int app_theme = 0xff6750a4;
@@ -79,12 +80,12 @@ class Global {
   static bool send_heart_init = false;
 
   static List<String> images = [
-    'images/dbimage/1.jpg',
-    'images/dbimage/2.jpg',
-    'images/dbimage/3.jpg',
-    'images/dbimage/4.jpg',
-    'images/dbimage/5.jpg',
-    'images/dbimage/6.jpg',
+    'images/dbimage/1.png',
+    'images/dbimage/2.png',
+    'images/dbimage/3.png',
+    'images/dbimage/4.png',
+    'images/dbimage/5.png',
+    'images/dbimage/6.png',
   ];
 
   static List<dynamic> charset = [];
@@ -355,6 +356,13 @@ class Global {
   static Uint8List? getOneImage() {
     int len = Global.images.length;
     int loc = Global.getRandom(0, len - 1);
+    String asset_name = Global.images[loc];
+    return Global.image_cache[asset_name];
+  }
+
+  static Uint8List? getIdxImage(int idx) {
+    int len = Global.images.length;
+    int loc = idx % len;
     String asset_name = Global.images[loc];
     return Global.image_cache[asset_name];
   }

@@ -36,6 +36,7 @@ class _ArticleListState extends State<ArticleListPage>
   List data = [];
   // ignore: non_constant_identifier_names
   bool _get_data = false;
+  int idx = 0;
 
   @override
   void initState() {
@@ -119,7 +120,10 @@ class _ArticleListState extends State<ArticleListPage>
       }
       setState(() {
         for (var tem in res['data']) {
-          tem['image'] = Global.getOneImage();
+          if (idx >= Global.images.length) {
+            idx = 0;
+          }
+          tem['image'] = Global.getIdxImage(idx++);
         }
         data.addAll(res['data']);
       });

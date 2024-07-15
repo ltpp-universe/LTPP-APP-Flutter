@@ -21,7 +21,7 @@ class OneLineApp extends StatefulWidget {
   String _content = '';
   // ignore: non_constant_identifier_names
   late String _img;
-  double _height = 200;
+  double _height = 83;
   // ignore: non_constant_identifier_names, unused_field
   String _to_page_name = '';
   // ignore: non_constant_identifier_names
@@ -104,7 +104,7 @@ class _OneLineAppState extends State<OneLineApp>
                       padding: const EdgeInsets.all(2),
                       child: Text(
                         widget._content,
-                        maxLines: 8,
+                        maxLines: 2,
                         style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.black,
