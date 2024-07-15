@@ -79,14 +79,12 @@ class Global {
   static bool send_heart_init = false;
 
   static List<String> images = [
-    'images/dbimage/020d85e19166992402730f307c5f93f8.jpg',
-    'images/dbimage/03c6cb8053414977e6c004fc22c85e24.jpg',
-    'images/dbimage/04b3181038bba91e08886265a8ebaf36.jpg',
-    'images/dbimage/0b36543e64edc61eca3f6dde10bc9797.jpg',
-    'images/dbimage/0b84cd986ac0e803d6f91e3a61ebc260.jpg',
-    'images/dbimage/0c2f516c575d6a7927c029d5ce99e026.jpg',
-    'images/dbimage/0c427c2b8486b5259cd5c4cd4c7a20aa.jpg',
-    'images/dbimage/0df721ac1fe58dfad9aad7369bc703f7.jpg',
+    'images/dbimage/1.jpg',
+    'images/dbimage/2.jpg',
+    'images/dbimage/3.jpg',
+    'images/dbimage/4.jpg',
+    'images/dbimage/5.jpg',
+    'images/dbimage/6.jpg',
   ];
 
   static List<dynamic> charset = [];
