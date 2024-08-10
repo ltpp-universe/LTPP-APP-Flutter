@@ -17,7 +17,9 @@ import 'package:ltpp/public/Http.dart';
 // ignore: must_be_immutable
 class MyVideoFabulousAndCollectionButton extends StatefulWidget {
   String id = '';
-  MyVideoFabulousAndCollectionButton({super.key, required this.id});
+  String url = '';
+  MyVideoFabulousAndCollectionButton(
+      {super.key, required this.id, required this.url});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -30,6 +32,7 @@ class _MyVideoFabulousAndCollectionButtonState
   bool is_love = false;
   bool is_fabulous = false;
   String id = '';
+  String url = '';
   void _delFabulous() async {
     if (!is_fabulous) {
       return _fabulous();
@@ -122,8 +125,13 @@ class _MyVideoFabulousAndCollectionButtonState
   void initState() {
     super.initState();
     id = widget.id;
+    url = encodeUrl(widget.url);
     _judgeIsCollection();
     _judgeIsFabulous();
+  }
+
+  String encodeUrl(String param_url) {
+    return '${Global.frontend_url}?redirect_url=${Uri.encodeComponent(param_url)}';
   }
 
   @override
@@ -219,6 +227,7 @@ class _MyVideoFabulousAndCollectionButtonState
                   ),
                 ),
           Container(
+            margin: const EdgeInsets.only(right: 36),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30),
@@ -235,6 +244,26 @@ class _MyVideoFabulousAndCollectionButtonState
                 Global.toVideoCommentPage(context, id);
               },
               icon: const Icon(Icons.comment),
+              color: Colors.green,
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  blurRadius: 3,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: IconButton(
+              onPressed: () {
+                Global.copy(url);
+              },
+              icon: const Icon(Icons.share),
               color: Colors.green,
             ),
           ),

@@ -189,13 +189,8 @@ class _ChatDialogPageState extends State<ChatDialogPage>
     eventBus.on<Event>().listen((Event e) {
       if (e.data == 'new_msg') {
         is_top_msg = false;
-        try {
-          setState(() {
-            scroolToBottom(960);
-          });
-          // ignore: empty_catches
-        } catch (err) {}
       }
+      scroolToBottom();
     });
   }
 
@@ -211,8 +206,8 @@ class _ChatDialogPageState extends State<ChatDialogPage>
       'user_id': _data['id'],
       'user_name': _data['name'],
     };
+    FocusScope.of(context).unfocus();
     MyWebSocket.send(my_msg_map);
-    scroolToBottom(0);
   }
 
   void getMyData() async {
@@ -274,34 +269,24 @@ class _ChatDialogPageState extends State<ChatDialogPage>
       setState(() {
         Global.chat_data[_data['id']] = res['data'].reversed.toList();
         _has_data = true;
-        scroolToBottom(0);
       });
+      scroolToBottom();
     } else {
       // ignore: use_build_context_synchronously
       Global.backPage(context);
     }
   }
 
-  void scroolToBottom(int deep) {
-    if (!mounted) {
-      return;
-    }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (deep >= 999) {
-        return;
+  void scroolToBottom() {
+    if (!mounted) return;
+    Future.delayed(const Duration(milliseconds: 360), () {
+      if (_scroll_controller.hasClients) {
+        _scroll_controller.animateTo(
+          _scroll_controller.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 666),
+          curve: Curves.easeIn,
+        );
       }
-      _scroll_controller
-          .animateTo(
-            _scroll_controller.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 666),
-            curve: Curves.easeIn,
-          )
-          .then((value) => {
-                // 递归滚动，防止未滚动到底部
-                if (_scroll_controller.position.pixels <
-                    _scroll_controller.position.maxScrollExtent)
-                  {scroolToBottom(deep + 1)}
-              });
     });
   }
 }

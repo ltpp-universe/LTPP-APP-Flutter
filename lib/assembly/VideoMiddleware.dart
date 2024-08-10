@@ -42,7 +42,7 @@ class _VideoMiddlewareState extends State<VideoMiddleware> {
             left: 0,
             right: 0,
             child:
-                MyVideoFabulousAndCollectionButton(id: _vide_data['id'] ?? ''))
+                MyVideoFabulousAndCollectionButton(id: _vide_data['id'] ?? '',url: _vide_data['url']))
       ],
     );
   }

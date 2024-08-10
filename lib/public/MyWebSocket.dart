@@ -14,48 +14,42 @@ import 'Event.dart';
 import 'Global.dart';
 
 class MyWebSocket {
-  // ignore: non_constant_identifier_names, prefer_interpolation_to_compose_strings, constant_identifier_names
-  static const String public_ws_url = 'wss://wss.ltpp.vip?';
-  // ignore: constant_identifier_names
-  static const String private_ws_url = 'ws://hbnuoj.ltpp.vip:47272?';
   static String ws_url = '';
+
   static late WebSocket? _webSocket;
   static bool success = false;
   static Future<void> connect() async {
+    MyWebSocket.ws_url =
+        '${Global.back_url.replaceFirst(RegExp(r'^https://'), 'wss://').replaceFirst(RegExp(r'^http://'), 'ws://').replaceFirst('://api.', '://wss.')}?${Global.authorization}${Global.ws_connect_between_str}${Global.key}';
     try {
-      MyWebSocket._webSocket = await WebSocket.connect(MyWebSocket.ws_url +
-          Global.authorization +
-          Global.ws_connect_between_str +
-          Global.key);
+      MyWebSocket._webSocket = await WebSocket.connect(MyWebSocket.ws_url);
     } catch (e) {
       // ignore: avoid_print, prefer_interpolation_to_compose_strings
       print('连接失败：' + e.toString());
       MyWebSocket.success = false;
+      sleep(const Duration(seconds: 1));
       await MyWebSocket.connect();
       return;
     }
     MyWebSocket.success = true;
     // ignore: prefer_interpolation_to_compose_strings, avoid_print
-    print('聊天服务器连接成功' +
-        (MyWebSocket.ws_url +
-            Global.authorization +
-            Global.ws_connect_between_str +
-            Global.key));
+    print('聊天服务器连接成功' + (MyWebSocket.ws_url));
     MyWebSocket._webSocket!.listen((data) {
       MyWebSocket.onData(data);
     }, onError: (error) async {
       // ignore: avoid_print
       print('聊天服务器出错: $error');
+      sleep(const Duration(seconds: 1));
       await MyWebSocket.connect();
     }, onDone: () async {
       // ignore: avoid_print
       print('聊天服务器连接断开');
+      sleep(const Duration(seconds: 1));
       await MyWebSocket.connect();
     }, cancelOnError: true);
   }
 
   static Future<void> init() async {
-    MyWebSocket.ws_url = Global.back_url;
     try {
       await MyWebSocket.connect();
       // ignore: avoid_print, prefer_interpolation_to_compose_strings
@@ -67,19 +61,18 @@ class MyWebSocket {
     } catch (e) {
       // ignore: avoid_print, prefer_interpolation_to_compose_strings
       print('连接出错，重连中：' + e.toString());
+      sleep(const Duration(seconds: 1));
       await MyWebSocket.connect();
     }
   }
 
   static Future<void> send(Map message) async {
-    if (MyWebSocket._webSocket != null &&
-        MyWebSocket._webSocket!.readyState == WebSocket.open) {
-      MyWebSocket._webSocket!.add(jsonEncode(message));
-      // ignore: avoid_print
-      print('消息发送成功');
-    } else {
-      MyWebSocket.connect();
+    if (MyWebSocket._webSocket == null ||
+        MyWebSocket._webSocket!.readyState != WebSocket.open) {
+      await MyWebSocket.connect();
     }
+    String msg = jsonEncode(message);
+    MyWebSocket._webSocket?.add(msg);
   }
 
   static Future<void> close() async {

@@ -79,6 +79,8 @@ class Global {
 
   static bool send_heart_init = false;
 
+  static String frontend_url = 'https://ltpp.vip';
+
   static List<String> images = [
     'images/dbimage/1.png',
     'images/dbimage/2.png',
