@@ -44,6 +44,7 @@ class Global {
   static Map my_data = {};
   static String key = '';
   static String ws_connect_between_str = '@ltpp@';
+  static String empty_msg = '      ';
   static late SharedPreferences prefs;
   // ignore: constant_identifier_names
   static const double app_bar_height = 36;

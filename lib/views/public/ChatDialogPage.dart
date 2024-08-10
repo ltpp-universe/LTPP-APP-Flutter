@@ -87,7 +87,9 @@ class _ChatDialogPageState extends State<ChatDialogPage>
                       child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: SelectableText(
-                            Global.chat_data[_data['id']]![i]['msg'] ?? '',
+                            Global.chat_data[_data['id']]![i]['msg'].isEmpty
+                                ? Global.empty_msg
+                                : Global.chat_data[_data['id']]![i]['msg'],
                             style: const TextStyle(
                                 fontSize: Global.app_content_font_size),
                           ))))),
@@ -121,7 +123,9 @@ class _ChatDialogPageState extends State<ChatDialogPage>
                       child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: SelectableText(
-                            Global.chat_data[_data['id']]![i]['msg'] ?? '',
+                            Global.chat_data[_data['id']]![i]['msg'].isEmpty
+                                ? Global.empty_msg
+                                : Global.chat_data[_data['id']]![i]['msg'],
                             style: const TextStyle(
                                 fontSize: Global.app_content_font_size),
                           ))))),
