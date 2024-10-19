@@ -35,7 +35,6 @@ class _ChatDialogPageState extends State<ChatDialogPage>
   bool get wantKeepAlive => true;
   bool _has_data = false;
   bool lock = false;
-  bool is_top_msg = false;
   final List<Widget> _list_view = [];
   final _text_controller = TextEditingController();
   late final ScrollController _scroll_controller;
@@ -131,11 +130,7 @@ class _ChatDialogPageState extends State<ChatDialogPage>
                           ))))),
         ]);
       }
-      if (is_top_msg) {
-        _list_view.insert(0, Container(child: user));
-      } else {
-        _list_view.add(Container(child: user));
-      }
+      _list_view.add(Container(child: user));
     }
     return SafeArea(
         child: Stack(children: [
@@ -185,16 +180,17 @@ class _ChatDialogPageState extends State<ChatDialogPage>
     _scroll_controller = ScrollController();
     getMyData();
     _scroll_controller.addListener(() {
-      if (_scroll_controller.position.pixels == 0 && !lock) {
-        is_top_msg = true;
+      if (_scroll_controller.position.pixels <= 0 && !lock) {
         _getHistoryData();
       }
     });
     eventBus.on<Event>().listen((Event e) {
-      if (e.data == 'new_msg') {
-        is_top_msg = false;
+      double current_scroll_position = _scroll_controller.position.pixels;
+      double max_scroll = _scroll_controller.position.maxScrollExtent;
+      if (max_scroll - current_scroll_position <
+          Global.chat_can_scroll_to_bottom_max_px) {
+        scroolToBottom();
       }
-      scroolToBottom();
     });
   }
 
@@ -237,7 +233,7 @@ class _ChatDialogPageState extends State<ChatDialogPage>
   }
 
   void _getHistoryData() async {
-    if (!mounted) {
+    if (!mounted || lock) {
       return;
     }
     lock = true;
@@ -273,8 +269,8 @@ class _ChatDialogPageState extends State<ChatDialogPage>
       setState(() {
         Global.chat_data[_data['id']] = res['data'].reversed.toList();
         _has_data = true;
+        scroolToBottom();
       });
-      scroolToBottom();
     } else {
       // ignore: use_build_context_synchronously
       Global.backPage(context);

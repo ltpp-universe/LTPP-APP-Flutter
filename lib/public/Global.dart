@@ -39,6 +39,7 @@ class Global {
   // ignore: non_constant_identifier_names, prefer_final_fields
   static String _file_name = 'user';
   static int app_theme = 0xff6750a4;
+  static int chat_can_scroll_to_bottom_max_px = 100;
   static String authorization = '';
   // ignore: non_constant_identifier_names
   static Map my_data = {};
